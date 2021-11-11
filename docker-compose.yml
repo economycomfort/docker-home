@@ -39,8 +39,10 @@ services:
             - "mosquitto"
         volumes:
             - /run/udev:/run/udev:ro
-            - ./appdata/zigbee2mqtt:/app/data
+            #- ./appdata/zigbee2mqtt:/app/data
+            - zigbee2mqtt_data:/app/data
             - zigbee2mqtt_log:/app/data/log
+            - ./appdata/zigbee2mqtt/configuration.yaml:/app/data/configuration.yaml
         devices:
             - /dev/ttyACM0:/dev/ttyACM0
         environment:
@@ -70,5 +72,6 @@ services:
 volumes:
     mosquitto_data:
     mosquitto_log:
+    zigbee2mqtt_data:
     zigbee2mqtt_log:
     homebridge_data:
