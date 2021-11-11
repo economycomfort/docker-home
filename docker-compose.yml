@@ -12,59 +12,6 @@ services:
         environment:
             - TZ
     
-    portainer:
-        container_name: portainer
-        hostname: portainer
-        image: portainer/portainer-ce
-        restart: always
-        command: -H unix:///var/run/docker.sock
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
-            - portainer_data:/data
-        environment:
-            - TZ
-            - PUID
-            - PGID
-        ports:
-            - 9000:9000
-    
-    pihole:
-        container_name: pihole
-        hostname: pihole
-        image: pihole/pihole:latest
-        restart: unless-stopped
-        volumes:
-            - pihole_data:/etc/pihole/
-            - pihole_dnsmasq:/etc/dnsmasq.d/
-        environment:
-            - TZ
-        ports:
-            - 53:53/tcp
-            - 53:53/udp
-            - 67:67/udp
-            - 80:80/tcp
-            - 443:443/tcp
-        cap_add:
-            - NET_ADMIN
-   
-   #netbootxyz:
-   #     image: ghcr.io/linuxserver/netbootxyz
-   #     container_name: netbootxyz
-   #     restart: unless-stopped
-   #     environment:
-   #         - PUID
-   #         - PGID
-   #         #- MENU_VERSION=1.9.9 #optional
-   #         #- PORT_RANGE=30000:30010 #optional
-   #         #- SUBFOLDER=/ #optional
-   #     volumes:
-   #         - ./appdata/netbootxyz/config:/config
-   #         - ./appdata/netbootxyz/assets:/assets #optional
-   #     ports:
-   #         - 3000:3000
-   #         - 69:69/udp
-   #         - 8181:80 #optional
-    
     mosquitto:
         container_name: mosquitto
         hostname: mosquitto
@@ -104,20 +51,6 @@ services:
             - 8080:8080
         privileged: true
 
-    nodered:
-      container_name: nodered
-      hostname: nodered
-      image: nodered/node-red
-      restart: always
-      volumes:
-        - ./appdata/nodered:/data
-      environment:
-        - TZ
-        - PUID
-        - PGID
-      ports:
-        - 1880:1880
-
     homebridge:
         container_name: homebridge
         hostname: homebridge
@@ -135,10 +68,7 @@ services:
             - HOMEBRIDGE_CONFIG_UI_PORT:8180
 
 volumes:
-    portainer_data:
     mosquitto_data:
     mosquitto_log:
     zigbee2mqtt_log:
     homebridge_data:
-    pihole_data:
-    pihole_dnsmasq:
