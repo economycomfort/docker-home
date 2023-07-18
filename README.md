@@ -1,6 +1,9 @@
 # docker-home
 Files relating to docker services for home automation (and adjacent) services.
 
+## Deprecated
+This repository has been merged into [economycomfort/docker](https://github.com/economycomfort/docker),
+and serves only as an archive.
 
 ## MQTT Debugging
 In some cases, you may need to sniff MQTT messages for debugging.
